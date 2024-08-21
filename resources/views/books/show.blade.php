@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Buku</title>
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -30,45 +33,87 @@
                     <li class="list-group-item"><strong>Tahun Publikasi:</strong> {{ $catalogs->PublishYear }}</li>
                     <li class="list-group-item"><strong>Di Publikasi Oleh:</strong> {{ $catalogs->Publikasi }}</li>
                 </ul>
-
-                <!-- Collection Info -->
+                
+                <!-- Nav Tabs for Collection Info -->
                 <h4 class="mt-4">Koleksi Info</h4>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>No Barcode</th>
-                            <th>No Panggil</th>
-                            <th>Akses</th>
-                            <th>Lokasi</th>
-                            <th>Ketersediaan</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($catalogs->collections as $collection)
-                        <tr>
-                            <td>{{ $collection->NomorBarcode ?? 'Tidak tersedia' }}</td>
-                            <td>{{ $collection->CallNumber ?? 'Tidak tersedia' }}</td>
-                            <td>
-                                @if($collection->ISOPAC == 1)
-                                    Dapat dipinjam
-                                @elseif($collection->ISOPAC == 2)
-                                    Tidak bisa Dipinjam
-                                @else
-                                    Tidak tersedia
-                                @endif
-                            </td>
-                            <td>{{ $collection->location->Name ?? 'Tidak tersedia' }}</td>
-                            <td>
-                                @if($collection->ISOPAC == 1)
-                                    Tersedia
-                                @else
-                                    Tidak Tersedia
-                                @endif
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-eksemplar-tab" data-bs-toggle="tab" data-bs-target="#nav-eksemplar" type="button" role="tab" aria-controls="nav-eksemplar" aria-selected="true">Eksemplar</button>
+                        <button class="nav-link" id="nav-konten-digital-tab" data-bs-toggle="tab" data-bs-target="#nav-konten-digital" type="button" role="tab" aria-controls="nav-konten-digital" aria-selected="false">Konten Digital</button>
+                        <button class="nav-link" id="nav-marc-tab" data-bs-toggle="tab" data-bs-target="#nav-marc" type="button" role="tab" aria-controls="nav-marc" aria-selected="false">MARC</button>
+                        <button class="nav-link" id="nav-unduh-catalog-tab" data-bs-toggle="tab" data-bs-target="#nav-unduh-catalog" type="button" role="tab" aria-controls="nav-unduh-catalog" aria-selected="false">Unduh Katalog</button>
+                    </div>
+                </nav>
+
+                <!-- Tab Content -->
+                <div class="tab-content" id="nav-tabContent">
+                    <!-- Eksemplar Content -->
+                    <div class="tab-pane fade show active" id="nav-eksemplar" role="tabpanel" aria-labelledby="nav-eksemplar-tab">
+                        <table class="table table-bordered mt-3">
+                            <thead>
+                                <tr>
+                                    <th>No Barcode</th>
+                                    <th>No Panggil</th>
+                                    <th>Akses</th>
+                                    <th>Lokasi</th>
+                                    <th>Ketersediaan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($catalogs->collections as $collection)
+                                <tr>
+                                    <td>{{ $collection->NomorBarcode ?? 'Tidak tersedia' }}</td>
+                                    <td>{{ $collection->CallNumber ?? 'Tidak tersedia' }}</td>
+                                    <td>
+                                        @if($collection->ISOPAC == 1)
+                                            Dapat dipinjam
+                                        @elseif($collection->ISOPAC == 2)
+                                            Tidak bisa Dipinjam
+                                        @else
+                                            Tidak tersedia
+                                        @endif
+                                    </td>
+                                    <td>{{ $collection->location->Name ?? 'Tidak tersedia' }}</td>
+                                    <td>
+                                        @if($collection->ISOPAC == 1)
+                                            Tersedia
+                                        @else
+                                            Tidak Tersedia
+                                        @endif
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Konten Digital Content -->
+                    <div class="tab-pane fade" id="nav-konten-digital" role="tabpanel" aria-labelledby="nav-konten-digital-tab">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur euismod, nisi et pharetra malesuada, libero lacus elementum nunc, ut vehicula ex justo at velit.</p>
+                    </div>
+
+                    <!-- MARC Content -->
+                    <div class="tab-pane fade" id="nav-marc" role="tabpanel" aria-labelledby="nav-marc-tab">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed venenatis dolor, non blandit mi.</p>
+                    </div>
+
+                    <!-- Unduh Catalog Content -->
+                    <div class="tab-pane fade" id="nav-unduh-catalog" role="tabpanel" aria-labelledby="nav-unduh-catalog-tab">
+                        <div class="dropdown mt-3">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                Pilih Format Unduhan
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" href="#">MARC Unicode/UTF-8</a></li>
+                                <li><a class="dropdown-item" href="#">Format MARC XML</a></li>
+                                <li><a class="dropdown-item" href="#">Format MODS</a></li>
+                                <li><a class="dropdown-item" href="#">Format Dublin Core (RDF)</a></li>
+                                <li><a class="dropdown-item" href="#">Format Dublin Core (OAI)</a></li>
+                                <li><a class="dropdown-item" href="#">Format Dublin Core (SRW)</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Back Button -->
                 <a href="{{ route('books.index', ['filter' => request('filter'), 'filterValue' => request('filterValue')]) }}" class="btn btn-primary mt-4">Kembali ke Daftar Buku</a>
@@ -125,45 +170,9 @@
     .book-card .card-body {
         padding: 15px;
         flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
     }
 
-    .book-card .btn-outline-info {
-        margin-top: auto;
-        display: block;
-        padding: 10px;
-        width: 100%;
-    }
-
-    .book-card .card-title {
-        font-size: 16px;
-        font-weight: bold;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        margin-bottom: 5px;
-    }
-
-    .book-card .card-text {
-        font-size: 14px;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        margin-bottom: 5px;
-    }
-
-    /* Added Spacing */
-    .remove-filter {
-        margin-right: 10px; /* Menambahkan jarak antara tombol Remove dan Search */
-    }
-
-    .search-button {
-        margin-top: 10px;
+    .book-card .publisher {
+        color: #555;
     }
 </style>
