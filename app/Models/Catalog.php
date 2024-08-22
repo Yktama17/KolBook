@@ -16,5 +16,10 @@ class Catalog extends Model
     {
         return $this->hasMany(Collection::class, 'Catalog_id', 'ID');
     }
-}
 
+    // Relasi dengan Ruas (MARC)
+    public function MARC()
+    {
+        return $this->hasMany(MARC::class, 'catalog_ruas', 'ID');
+    }
+}

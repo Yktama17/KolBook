@@ -35,13 +35,13 @@
                 </ul>
                 
                 <!-- Nav Tabs for Collection Info -->
-                <h4 class="mt-4">Koleksi Info</h4>
+                <h4 class="mt-4"></h4>
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-eksemplar-tab" data-bs-toggle="tab" data-bs-target="#nav-eksemplar" type="button" role="tab" aria-controls="nav-eksemplar" aria-selected="true">Eksemplar</button>
-                        <button class="nav-link" id="nav-konten-digital-tab" data-bs-toggle="tab" data-bs-target="#nav-konten-digital" type="button" role="tab" aria-controls="nav-konten-digital" aria-selected="false">Konten Digital</button>
-                        <button class="nav-link" id="nav-marc-tab" data-bs-toggle="tab" data-bs-target="#nav-marc" type="button" role="tab" aria-controls="nav-marc" aria-selected="false">MARC</button>
-                        <button class="nav-link" id="nav-unduh-catalog-tab" data-bs-toggle="tab" data-bs-target="#nav-unduh-catalog" type="button" role="tab" aria-controls="nav-unduh-catalog" aria-selected="false">Unduh Katalog</button>
+                        <button class="nav-link active" id="nav-eksemplar-tab" data-toggle="tab" data-target="#nav-eksemplar" type="button" role="tab" aria-controls="nav-eksemplar" aria-selected="true">Eksemplar</button>
+                        <button class="nav-link" id="nav-konten-digital-tab" data-toggle="tab" data-target="#nav-konten-digital" type="button" role="tab" aria-controls="nav-konten-digital" aria-selected="false">Konten Digital</button>
+                        <button class="nav-link" id="nav-marc-tab" data-toggle="tab" data-target="#nav-marc" type="button" role="tab" aria-controls="nav-marc" aria-selected="false">MARC</button>
+                        <button class="nav-link" id="nav-unduh-catalog-tab" data-toggle="tab" data-target="#nav-unduh-catalog" type="button" role="tab" aria-controls="nav-unduh-catalog" aria-selected="false">Unduh Katalog</button>
                     </div>
                 </nav>
 
@@ -100,7 +100,7 @@
                     <!-- Unduh Catalog Content -->
                     <div class="tab-pane fade" id="nav-unduh-catalog" role="tabpanel" aria-labelledby="nav-unduh-catalog-tab">
                         <div class="dropdown mt-3">
-                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
                                 Pilih Format Unduhan
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
