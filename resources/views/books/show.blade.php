@@ -21,11 +21,11 @@
         
         <div class="row">
             <div class="col-md-4">
-                <!-- Book Image -->
+                <!-- Gambar Buku -->
                 <img src="https://images.unsplash.com/photo-1615976909545-a2d402c7dac3?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/random/200x200?book" class="card-img-top" alt="{{ $catalogs->Title }}">
             </div>
             <div class="col-md-8">
-                <!-- Book Details -->
+                <!-- Detail Buku -->
                 <h3>Detail Buku</h3>
                 <ul class="list-group">
                     <li class="list-group-item"><strong>Penerbit:</strong> {{ $catalogs->Publisher }}</li>
@@ -34,20 +34,31 @@
                     <li class="list-group-item"><strong>Di Publikasi Oleh:</strong> {{ $catalogs->Publikasi }}</li>
                 </ul>
                 
-                <!-- Nav Tabs for Collection Info -->
+                <!-- Nav Tabs untuk Informasi Koleksi -->
                 <h4 class="mt-4"></h4>
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <button class="nav-link active" id="nav-eksemplar-tab" data-toggle="tab" data-target="#nav-eksemplar" type="button" role="tab" aria-controls="nav-eksemplar" aria-selected="true">Eksemplar</button>
                         <button class="nav-link" id="nav-konten-digital-tab" data-toggle="tab" data-target="#nav-konten-digital" type="button" role="tab" aria-controls="nav-konten-digital" aria-selected="false">Konten Digital</button>
                         <button class="nav-link" id="nav-marc-tab" data-toggle="tab" data-target="#nav-marc" type="button" role="tab" aria-controls="nav-marc" aria-selected="false">MARC</button>
-                        <button class="nav-link" id="nav-unduh-catalog-tab" data-toggle="tab" data-target="#nav-unduh-catalog" type="button" role="tab" aria-controls="nav-unduh-catalog" aria-selected="false">Unduh Katalog</button>
+                        <!-- Dropdown Unduh -->
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="nav-unduh-catalog-tab" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Unduh Katalog</a>
+                            <div class="dropdown-menu" aria-labelledby="nav-unduh-catalog-tab">
+                                <a class="dropdown-item" href="#">MARC Unicode/UTF-8</a>
+                                <a class="dropdown-item" href="#">Format MARC XML</a>
+                                <a class="dropdown-item" href="#">Format MODS</a>
+                                <a class="dropdown-item" href="#">Format Dublin Core (RDF)</a>
+                                <a class="dropdown-item" href="#">Format Dublin Core (OAI)</a>
+                                <a class="dropdown-item" href="#">Format Dublin Core (SRW)</a>
+                            </div>
+                        </div>
                     </div>
                 </nav>
 
-                <!-- Tab Content -->
+                <!-- Isi Tab -->
                 <div class="tab-content" id="nav-tabContent">
-                    <!-- Eksemplar Content -->
+                    <!-- Konten Eksemplar -->
                     <div class="tab-pane fade show active" id="nav-eksemplar" role="tabpanel" aria-labelledby="nav-eksemplar-tab">
                         <table class="table table-bordered mt-3">
                             <thead>
@@ -87,35 +98,37 @@
                         </table>
                     </div>
 
-                    <!-- Konten Digital Content -->
+                    <!-- Konten Digital -->
                     <div class="tab-pane fade" id="nav-konten-digital" role="tabpanel" aria-labelledby="nav-konten-digital-tab">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur euismod, nisi et pharetra malesuada, libero lacus elementum nunc, ut vehicula ex justo at velit.</p>
+                        <p>Kosong untuk saat ini.</p>
                     </div>
 
-                    <!-- MARC Content -->
+                    <!-- Konten MARC -->
                     <div class="tab-pane fade" id="nav-marc" role="tabpanel" aria-labelledby="nav-marc-tab">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed venenatis dolor, non blandit mi.</p>
-                    </div>
-
-                    <!-- Unduh Catalog Content -->
-                    <div class="tab-pane fade" id="nav-unduh-catalog" role="tabpanel" aria-labelledby="nav-unduh-catalog-tab">
-                        <div class="dropdown mt-3">
-                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
-                                Pilih Format Unduhan
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item" href="#">MARC Unicode/UTF-8</a></li>
-                                <li><a class="dropdown-item" href="#">Format MARC XML</a></li>
-                                <li><a class="dropdown-item" href="#">Format MODS</a></li>
-                                <li><a class="dropdown-item" href="#">Format Dublin Core (RDF)</a></li>
-                                <li><a class="dropdown-item" href="#">Format Dublin Core (OAI)</a></li>
-                                <li><a class="dropdown-item" href="#">Format Dublin Core (SRW)</a></li>
-                            </ul>
-                        </div>
+                        <table class="table table-bordered mt-3">
+                            <thead>
+                                <tr>
+                                    <th>Tag</th>
+                                    <th>Ind1</th>
+                                    <th>Ind2</th>
+                                    <th>Isi/Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($marcData as $marc)
+                                <tr>
+                                    <td>{{ $marc->Tag }}</td>
+                                    <td>{{ $marc->Indicator1 }}</td>
+                                    <td>{{ $marc->Indicator2 }}</td>
+                                    <td>{{ $marc->Value }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
-                <!-- Back Button -->
+                <!-- Tombol Kembali -->
                 <a href="{{ route('books.index', ['filter' => request('filter'), 'filterValue' => request('filterValue')]) }}" class="btn btn-primary mt-4">Kembali ke Daftar Buku</a>
             </div>
         </div>
@@ -143,7 +156,7 @@
 </html>
 
 <style>
-    /* Book Card */
+    /* Kartu Buku */
     .card-container {
         display: grid;
         grid-template-columns: repeat(5, 1fr); /* Mengatur grid dengan 5 kolom */

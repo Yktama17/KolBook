@@ -9,12 +9,12 @@ class Location extends Model
     protected $table = 'locations'; 
     protected $primaryKey = 'ID';
 
-    public function location()
+    public function collections()
     {
-        return $this->hasMany(Location::class, 'Location_id', 'ID');
+        return $this->hasMany(Collection::class, 'Location_id', 'ID');
     }
-    
 }
+
 
 
 

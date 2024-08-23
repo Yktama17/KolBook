@@ -9,12 +9,8 @@ class MARC extends Model
 {
     use HasFactory;
 
-    protected $table = 'catalog_ruas';
+    protected $table = 'catalog_ruas'; 
     protected $primaryKey = 'ID';
     
-    // Relasi dengan model Subruas
-    public function subruas()
-    {
-        return $this->hasMany(Subruas::class, 'catalog_ruas', 'ID');
-    }
+    
 }

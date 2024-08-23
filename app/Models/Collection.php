@@ -17,9 +17,10 @@ class Collection extends Model
         return $this->belongsTo(Catalog::class, 'Catalog_id', 'ID');
     }
 
-     public function location()
+    public function location()
     {
-        return $this->belongsTo(Location::class, 'Location_id','ID');
+        return $this->belongsTo(Location::class, 'Location_id', 'ID');
     }
-
+    
 }
+

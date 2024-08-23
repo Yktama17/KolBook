@@ -3,17 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Catalog;
+use App\Models\MARC;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
     public function index(Request $request)
     {
-        // Mengambil input dari request
         $filters = $request->input('filter', []);
         $filterValues = $request->input('filterValue', []);
 
-        // Mengambil data buku dengan pagination dan filter
         $books = Catalog::withCount('collections');
 
         foreach ($filters as $index => $filter) {
@@ -41,19 +40,22 @@ class BookController extends Controller
 
     public function show($id)
     {
+        // Mengambil data katalog beserta relasi koleksinya dan lokasi
         $catalogs = Catalog::with(['collections.location'])->findOrFail($id);
-    
-        // Query untuk mengambil karya terkait berdasarkan pengarang yang sama
-        $relatedBooks = Catalog::where('Author', $catalogs->Author)
-                                ->where('id', '!=', $catalogs->id) // Hindari buku yang sama
-                                ->limit(5) // Batasi karya terkait
-                                ->get();
-    
-        return view('books.show', compact('catalogs', 'relatedBooks'));
-    }
-    
 
+        // Mengambil data MARC untuk katalog tersebut
+        $marcData = MARC::where('Catalogid', $id)->orderBy('Tag', 'asc')->get();
+
+        // Query untuk mendapatkan buku terkait berdasarkan pengarang yang sama
+        $relatedBooks = Catalog::where('Author', $catalogs->Author)
+                                ->where('ID', '!=', $catalogs->ID) // Menghindari buku yang sama
+                                ->limit(5) // Membatasi jumlah buku terkait
+                                ->get();
+
+        return view('books.show', compact('catalogs', 'relatedBooks', 'marcData'));
+    }
 }
+
 
 
 
