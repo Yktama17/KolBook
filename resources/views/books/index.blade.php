@@ -114,11 +114,10 @@
 </html>
 
 <style>
-    /* Filter Card */
     .filter-card {
         border: 1px solid #ddd;
         border-radius: 14px;
-        box-shadow: 0 4px 8px rgba(13, 177, 40, 0.2);
+        box-shadow: 0 4px 8px rgba(36, 196, 63, 0.2);
     }
 
     .filter-card .card-header {
@@ -132,13 +131,24 @@
         padding: 15px;
     }
 
-    /* Book Card */
     .card-container {
         display: grid;
-        grid-template-columns: repeat(5, 1fr); /* Mengatur grid dengan 5 kolom */
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
         gap: 15px; /* Memberikan jarak antar kartu */
         justify-content: center;
         margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+        .card-container {
+            grid-template-columns: repeat(2, 1fr); 
+        }
+    }
+
+    @media (max-width: 576px) {
+        .card-container {
+            grid-template-columns: 1fr; 
+        }
     }
 
     .book-card {
@@ -192,9 +202,8 @@
         margin-bottom: 5px;
     }
 
-    /* Added Spacing */
     .remove-filter {
-        margin-right: 10px; /* Menambahkan jarak antara tombol Remove dan Search */
+        margin-right: 10px; 
     }
 
     .search-button {
