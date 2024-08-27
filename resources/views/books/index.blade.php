@@ -1,119 +1,80 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Koleksi</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Perpustakaan Perum Jasa Tirta I</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </nav>
+<!-- resources/views/books/index.blade.php -->
+@extends('layout.app')
 
-    <div class="container">
-        <h1 class="my-4">Koleksi </h1>
+@section('title', 'Koleksi Buku')
 
-        <!-- Filter Card -->
-        <div class="filter-card mb-4">
-            <div class="card-header">
-                Filter Koleksi
-                <button id="add-filter" class="btn btn-primary btn-sm float-right">Tambah Filter</button>
-            </div>
-            <div class="card-body">
-                <form method="GET" action="{{ route('books.index') }}" class="form-inline">
-                    <div id="filter-container">
-                        <!-- Displaying Existing Filters -->
-                        @if(request()->has('filter') && is_array(request('filter')))
-                            @foreach(request('filter') as $index => $filter)
-                                <div class="form-group filter-group">
-                                    <select name="filter[]" class="form-control mr-sm-2">
-                                        <option value="" {{ $filter == '' ? 'selected' : '' }}>Select Filter</option>
-                                        <option value="Title" {{ $filter == 'Title' ? 'selected' : '' }}>Title</option>
-                                        <option value="Publisher" {{ $filter == 'Publisher' ? 'selected' : '' }}>Publisher</option>
-                                        <option value="PublishYear" {{ $filter == 'PublishYear' ? 'selected' : '' }}>Year</option>
-                                        <option value="BIBID" {{ $filter == 'BIBID' ? 'selected' : '' }}>BIBID</option>
-                                    </select>
-                                    <input type="text" name="filterValue[]" class="form-control mr-sm-2" placeholder="Enter value" value="{{ request('filterValue')[$index] ?? '' }}">
-                                    <button type="button" class="btn btn-danger btn-sm remove-filter">Remove</button>
-                                </div>
-                            @endforeach
-                        @else
-                            <!-- Initial Filter Fields -->
+@section('content')
+    <h1 class="my-4">Katalog</h1>
+
+    <!-- Filter Card -->
+    <div class="filter-card mb-4">
+        <div class="card-header">
+            Filter Katalog
+            <button id="add-filter" class="btn btn-primary btn-sm float-right">Tambah Filter</button>
+        </div>
+        <div class="card-body">
+            <form method="GET" action="{{ route('books.index') }}" class="form-inline">
+                <div id="filter-container">
+                    <!-- Existing Filters -->
+                    @if(request()->has('filter') && is_array(request('filter')))
+                        @foreach(request('filter') as $index => $filter)
                             <div class="form-group filter-group">
                                 <select name="filter[]" class="form-control mr-sm-2">
-                                    <option value="" selected>Select Filter</option>
-                                    <option value="Title" {{ request('filter.0') == 'Title' ? 'selected' : '' }}>Title</option>
-                                    <option value="Publisher" {{ request('filter.0') == 'Publisher' ? 'selected' : '' }}>Publisher</option>
-                                    <option value="PublishYear" {{ request('filter.0') == 'PublishYear' ? 'selected' : '' }}>Year</option>
-                                    <option value="BIBID" {{ request('filter.0') == 'BIBID' ? 'selected' : '' }}>BIBID</option>
+                                    <option value="" {{ $filter == '' ? 'selected' : '' }}>Select Filter</option>
+                                    <option value="Title" {{ $filter == 'Title' ? 'selected' : '' }}>Title</option>
+                                    <option value="Publisher" {{ $filter == 'Publisher' ? 'selected' : '' }}>Publisher</option>
+                                    <option value="PublishYear" {{ $filter == 'PublishYear' ? 'selected' : '' }}>Year</option>
+                                    <option value="BIBID" {{ $filter == 'BIBID' ? 'selected' : '' }}>BIBID</option>
                                 </select>
-                                <input type="text" name="filterValue[]" class="form-control mr-sm-2" placeholder="Enter value" value="{{ request('filterValue.0') }}">
+                                <input type="text" name="filterValue[]" class="form-control mr-sm-2" placeholder="Enter value" value="{{ request('filterValue')[$index] ?? '' }}">
                                 <button type="button" class="btn btn-danger btn-sm remove-filter">Remove</button>
                             </div>
-                        @endif
-                    </div>
-                    <button type="submit" class="btn btn-primary search-button">Search</button>
-                </form>
-            </div>
-        </div>
-
-        <!-- Book Cards -->
-        <div class="card-container">
-            @foreach($books as $book)
-            <div class="book-card elevation-2">
-                <img src="https://images.unsplash.com/photo-1615976909545-a2d402c7dac3?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/random/200x200?book" class="card-img-top" alt="{{ $book->Title }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $book->Title }}</h5>
-                    <p class="card-text publisher">{{ $book->Publisher }}</p>
-                    <p class="card-text collections-count">Copies: {{ $book->collections_count }}</p>
-                    <a href="{{ route('books.show', ['id' => $book->ID, 'filter' => request('filter'), 'filterValue' => request('filterValue')]) }}" class="btn btn-outline-info">Detail</a>
+                        @endforeach
+                    @else
+                        <!-- Initial Filter Fields -->
+                        <div class="form-group filter-group">
+                            <select name="filter[]" class="form-control mr-sm-2">
+                                <option value="" selected>Select Filter</option>
+                                <option value="Title" {{ request('filter.0') == 'Title' ? 'selected' : '' }}>Title</option>
+                                <option value="Publisher" {{ request('filter.0') == 'Publisher' ? 'selected' : '' }}>Publisher</option>
+                                <option value="PublishYear" {{ request('filter.0') == 'PublishYear' ? 'selected' : '' }}>Year</option>
+                                <option value="BIBID" {{ request('filter.0') == 'BIBID' ? 'selected' : '' }}>BIBID</option>
+                            </select>
+                            <input type="text" name="filterValue[]" class="form-control mr-sm-2" placeholder="Enter value" value="{{ request('filterValue.0') }}">
+                            <button type="button" class="btn btn-danger btn-sm remove-filter">Remove</button>
+                        </div>
+                    @endif
                 </div>
-            </div>
-            @endforeach
-        </div>
-
-        <!-- Pagination -->
-        <div class="d-flex justify-content-center mt-4">
-            {{ $books->appends(request()->input())->links('pagination::bootstrap-5') }}
+                <button type="submit" class="btn btn-primary search-button">Search</button>
+            </form>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        document.getElementById('add-filter').addEventListener('click', function() {
-            let filterContainer = document.getElementById('filter-container');
-            let filterCount = filterContainer.children.length;
-            let filterGroup = `
-                <div class="form-group filter-group">
-                    <select name="filter[]" class="form-control mr-sm-2">
-                        <option value="" selected>Select Filter</option>
-                        <option value="Title">Title</option>
-                        <option value="Publisher">Publisher</option>
-                        <option value="PublishYear">Year</option>
-                        <option value="BIBID">BIBID</option>
-                    </select>
-                    <input type="text" name="filterValue[]" class="form-control mr-sm-2" placeholder="Enter value">
-                    <button type="button" class="btn btn-danger btn-sm remove-filter">Remove</button>
-                </div>
-            `;
-            filterContainer.insertAdjacentHTML('beforeend', filterGroup);
-        });
+    <!-- Book Cards -->
+    <div class="card-container">
+        @foreach($books as $book)
+        <div class="book-card elevation-2">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="{{ $book->Title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ $book->Title }}</h5>
+                <p class="card-text publisher">{{ $book->Publisher }}</p>
+                <p class="card-text collections-count">Copies: {{ $book->collections_count }}</p>
+                <a href="{{ route('books.show', ['id' => $book->ID, 'filter' => request('filter'), 'filterValue' => request('filterValue')]) }}" class="btn btn-outline-info">Detail</a>
+            </div>
+        </div>
+        @endforeach
+    </div>
 
-        document.getElementById('filter-container').addEventListener('click', function(event) {
-            if (event.target.classList.contains('remove-filter')) {
-                event.target.parentElement.remove();
-            }
-        });
-    </script>
-</body>
-</html>
+    <!-- Pagination -->
+    <div class="d-flex justify-content-center mt-4">
+        {{ $books->appends(request()->input())->links('pagination::bootstrap-5') }}
+    </div>
+
+@endsection
+
 
 <style>
+   
     .filter-card {
         border: 1px solid #ddd;
         border-radius: 14px;
@@ -134,20 +95,20 @@
     .card-container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-        gap: 15px; /* Memberikan jarak antar kartu */
+        gap: 15px;
         justify-content: center;
         margin-bottom: 20px;
     }
 
     @media (max-width: 768px) {
         .card-container {
-            grid-template-columns: repeat(2, 1fr); 
+            grid-template-columns: repeat(2, 1fr);
         }
     }
 
     @media (max-width: 576px) {
         .card-container {
-            grid-template-columns: 1fr; 
+            grid-template-columns: 1fr;
         }
     }
 
@@ -210,3 +171,31 @@
         margin-top: 10px;
     }
 </style>
+
+<!-- JavaScript untuk menambah dan menghapus filter -->
+<script>
+   document.getElementById('add-filter').addEventListener('click', function() {
+    let filterContainer = document.getElementById('filter-container');
+    let filterGroup = `
+        <div class="form-group filter-group">
+            <select name="filter[]" class="form-control mr-sm-2">
+                <option value="" selected>Select Filter</option>
+                <option value="Title">Title</option>
+                <option value="Publisher">Publisher</option>
+                <option value="PublishYear">Year</option>
+                <option value="BIBID">BIBID</option>
+            </select>
+            <input type="text" name="filterValue[]" class="form-control mr-sm-2" placeholder="Enter value">
+            <button type="button" class="btn btn-danger btn-sm remove-filter">Remove</button>
+        </div>
+    `;
+    filterContainer.insertAdjacentHTML('beforeend', filterGroup);
+});
+
+document.getElementById('filter-container').addEventListener('click', function(event) {
+    if (event.target.classList.contains('remove-filter')) {
+        event.target.parentElement.remove();
+    }
+});
+
+</script>

@@ -1,166 +1,138 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Buku</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Perpustakaan Perum Jasa Tirta I</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </nav>
+<!-- resources/views/books/show.blade.php -->
+@extends('layout.app')
 
-    <div class="container">
-        <h1 class="my-4">{{ $catalogs->Title }}</h1>
-        
-        <div class="row">
-            <div class="col-md-4">
-                <!-- Gambar Buku -->
-                <img src="https://images.unsplash.com/photo-1615976909545-a2d402c7dac3?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/random/200x200?book" class="card-img-top" alt="{{ $catalogs->Title }}">
-            </div>
-            <div class="col-md-8">
-                <!-- Detail Buku -->
-                <h3>Detail Buku</h3>
-                <ul class="list-group">
-                    <li class="list-group-item"><strong>Penerbit:</strong> {{ $catalogs->Publisher }}</li>
-                    <li class="list-group-item"><strong>BIBID:</strong> {{ $catalogs->BIBID }}</li>
-                    <li class="list-group-item"><strong>Tahun Publikasi:</strong> {{ $catalogs->PublishYear }}</li>
-                    <li class="list-group-item"><strong>Di Publikasi Oleh:</strong> {{ $catalogs->Publikasi }}</li>
-                </ul>
-                
-                <!-- Nav Tabs untuk Informasi Koleksi -->
-                <h4 class="mt-4"></h4>
-                <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-eksemplar-tab" data-toggle="tab" data-target="#nav-eksemplar" type="button" role="tab" aria-controls="nav-eksemplar" aria-selected="true">Eksemplar</button>
-                        <button class="nav-link" id="nav-konten-digital-tab" data-toggle="tab" data-target="#nav-konten-digital" type="button" role="tab" aria-controls="nav-konten-digital" aria-selected="false">Konten Digital</button>
-                        <button class="nav-link" id="nav-marc-tab" data-toggle="tab" data-target="#nav-marc" type="button" role="tab" aria-controls="nav-marc" aria-selected="false">MARC</button>
-                        <!-- Dropdown Unduh -->
-                        <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="nav-unduh-catalog-tab" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Unduh Katalog</a>
-                            <div class="dropdown-menu" aria-labelledby="nav-unduh-catalog-tab">
-                                <a class="dropdown-item" href="#">MARC Unicode/UTF-8</a>
-                                <a class="dropdown-item" href="#">Format MARC XML</a>
-                                <a class="dropdown-item" href="#">Format MODS</a>
-                                <a class="dropdown-item" href="#">Format Dublin Core (RDF)</a>
-                                <a class="dropdown-item" href="#">Format Dublin Core (OAI)</a>
-                                <a class="dropdown-item" href="#">Format Dublin Core (SRW)</a>
-                            </div>
+@section('title', $catalogs->Title)
+
+@section('content')
+    <h1 class="my-4">{{ $catalogs->Title }}</h1>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="{{ $catalogs->Title }}">
+        </div>
+        <div class="col-md-8">
+            <h3>Detail Buku</h3>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Penerbit:</strong> {{ $catalogs->Publisher }}</li>
+                <li class="list-group-item"><strong>BIBID:</strong> {{ $catalogs->BIBID }}</li>
+                <li class="list-group-item"><strong>Tahun Publikasi:</strong> {{ $catalogs->PublishYear }}</li>
+                <li class="list-group-item"><strong>Di Publikasi Oleh:</strong> {{ $catalogs->Publikasi }}</li>
+            </ul>
+
+            <h4 class="mt-4">Informasi Koleksi</h4>
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-eksemplar-tab" data-toggle="tab" data-target="#nav-eksemplar" type="button" role="tab" aria-controls="nav-eksemplar" aria-selected="true">Eksemplar</button>
+                    <button class="nav-link" id="nav-konten-digital-tab" data-toggle="tab" data-target="#nav-konten-digital" type="button" role="tab" aria-controls="nav-konten-digital" aria-selected="false">Konten Digital</button>
+                    <button class="nav-link" id="nav-marc-tab" data-toggle="tab" data-target="#nav-marc" type="button" role="tab" aria-controls="nav-marc" aria-selected="false">MARC</button>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="nav-unduh-catalog-tab" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Unduh Katalog</a>
+                        <div class="dropdown-menu" aria-labelledby="nav-unduh-catalog-tab">
+                            <a class="dropdown-item" href="#">MARC Unicode/UTF-8</a>
+                            <a class="dropdown-item" href="#">Format MARC XML</a>
+                            <a class="dropdown-item" href="#">Format MODS</a>
+                            <a class="dropdown-item" href="#">Format Dublin Core (RDF)</a>
+                            <a class="dropdown-item" href="#">Format Dublin Core (OAI)</a>
+                            <a class="dropdown-item" href="#">Format Dublin Core (SRW)</a>
                         </div>
                     </div>
-                </nav>
+                </div>
+            </nav>
 
-                <!-- Isi Tab -->
-                <div class="tab-content" id="nav-tabContent">
-                    <!-- Konten Eksemplar -->
-                    <div class="tab-pane fade show active" id="nav-eksemplar" role="tabpanel" aria-labelledby="nav-eksemplar-tab">
-                        <table class="table table-bordered mt-3">
-                            <thead>
-                                <tr>
-                                    <th>No Barcode</th>
-                                    <th>No Panggil</th>
-                                    <th>Akses</th>
-                                    <th>Lokasi</th>
-                                    <th>Ketersediaan</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($catalogs->collections as $collection)
-                                <tr>
-                                    <td>{{ $collection->NomorBarcode ?? 'Tidak tersedia' }}</td>
-                                    <td>{{ $collection->CallNumber ?? 'Tidak tersedia' }}</td>
-                                    <td>
-                                        @if($collection->ISOPAC == 1)
-                                            Dapat dipinjam
-                                        @elseif($collection->ISOPAC == 2)
-                                            Tidak bisa Dipinjam
-                                        @else
-                                            Tidak tersedia
-                                        @endif
-                                    </td>
-                                    <td>{{ $collection->location->Name ?? 'Tidak tersedia' }}</td>
-                                    <td>
-                                        @if($collection->ISOPAC == 1)
-                                            Tersedia
-                                        @else
-                                            Tidak Tersedia
-                                        @endif
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!-- Konten Digital -->
-                    <div class="tab-pane fade" id="nav-konten-digital" role="tabpanel" aria-labelledby="nav-konten-digital-tab">
-                        <p>Kosong untuk saat ini.</p>
-                    </div>
-
-                    <!-- Konten MARC -->
-                    <div class="tab-pane fade" id="nav-marc" role="tabpanel" aria-labelledby="nav-marc-tab">
-                        <table class="table table-bordered mt-3">
-                            <thead>
-                                <tr>
-                                    <th>Tag</th>
-                                    <th>Ind1</th>
-                                    <th>Ind2</th>
-                                    <th>Isi/Value</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($marcData as $marc)
-                                <tr>
-                                    <td>{{ $marc->Tag }}</td>
-                                    <td>{{ $marc->Indicator1 }}</td>
-                                    <td>{{ $marc->Indicator2 }}</td>
-                                    <td>{{ $marc->Value }}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-eksemplar" role="tabpanel" aria-labelledby="nav-eksemplar-tab">
+                    <table class="table table-bordered mt-3">
+                        <thead>
+                            <tr>
+                                <th>No Barcode</th>
+                                <th>No Panggil</th>
+                                <th>Akses</th>
+                                <th>Lokasi</th>
+                                <th>Ketersediaan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($catalogs->collections as $collection)
+                            <tr>
+                                <td>{{ $collection->NomorBarcode ?? 'Tidak tersedia' }}</td>
+                                <td>{{ $collection->CallNumber ?? 'Tidak tersedia' }}</td>
+                                <td>
+                                    @if($collection->ISOPAC == 1)
+                                        Dapat dipinjam
+                                    @elseif($collection->ISOPAC == 2)
+                                        Tidak bisa Dipinjam
+                                    @else
+                                        Tidak tersedia
+                                    @endif
+                                </td>
+                                <td>{{ $collection->location->Name ?? 'Tidak tersedia' }}</td>
+                                <td>
+                                    @if($collection->ISOPAC == 1)
+                                        Tersedia
+                                    @else
+                                        Tidak Tersedia
+                                    @endif
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
 
-                <!-- Tombol Kembali -->
-                <a href="{{ route('books.index', ['filter' => request('filter'), 'filterValue' => request('filterValue')]) }}" class="btn btn-primary mt-4">Kembali ke Daftar Buku</a>
-            </div>
-        </div>
+                <div class="tab-pane fade" id="nav-konten-digital" role="tabpanel" aria-labelledby="nav-konten-digital-tab">
+                    <p>Kosong untuk saat ini.</p>
+                </div>
 
-        <!-- Karya Terkait -->
-        <h4 class="mt-5">Karya Terkait</h4>
-        <div class="card-container">
-            @foreach($relatedBooks as $relatedBook)
-            <div class="book-card elevation-2">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="{{ $relatedBook->Title }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $relatedBook->Title }}</h5>
-                    <p class="card-text publisher">{{ $relatedBook->Publisher }}</p>
-                    {{-- <a href="{{ url('/books/' . $relatedBook->id) }}" class="btn btn-outline-info">Lihat Detail</a> --}}
+                <div class="tab-pane fade" id="nav-marc" role="tabpanel" aria-labelledby="nav-marc-tab">
+                    <table class="table table-bordered mt-3">
+                        <thead>
+                            <tr>
+                                <th>Tag</th>
+                                <th>Ind1</th>
+                                <th>Ind2</th>
+                                <th>Isi/Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($marcData as $marc)
+                            <tr>
+                                <td>{{ $marc->Tag }}</td>
+                                <td>{{ $marc->Indicator1 }}</td>
+                                <td>{{ $marc->Indicator2 }}</td>
+                                <td>{{ $marc->Value }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            @endforeach
+
+            <a href="{{ route('books.index', ['filter' => request('filter'), 'filterValue' => request('filterValue')]) }}" class="btn btn-primary mt-4">Kembali ke Daftar Buku</a>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+    <!-- Karya Terkait -->
+    <h4 class="mt-5">Karya Terkait</h4>
+    <div class="card-container">
+        @foreach($relatedBooks as $relatedBook)
+        <div class="book-card elevation-2">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="{{ $relatedBook->Title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ $relatedBook->Title }}</h5>
+                <p class="card-text publisher">{{ $relatedBook->Publisher }}</p>
+            </div>
+        </div>
+        @endforeach
+    </div>
+@endsection
 
+<!-- Include the same CSS styles you were using -->
 <style>
-    /* Kartu Buku */
+    /* CSS yang sama seperti sebelumnya */
     .card-container {
         display: grid;
-        grid-template-columns: repeat(5, 1fr); /* Mengatur grid dengan 5 kolom */
-        gap: 15px; /* Memberikan jarak antar kartu */
+        grid-template-columns: repeat(5, 1fr);
+        gap: 15px;
         justify-content: center;
         margin-bottom: 20px;
     }

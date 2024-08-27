@@ -33,35 +33,21 @@ class BookController extends Controller
             }
         }
 
-        $books = $books->paginate(10);
+        $books = $books->paginate(14);
 
         return view('books.index', compact('books', 'filters', 'filterValues'));
     }
 
     public function show($id)
     {
-        // Mengambil data katalog beserta relasi koleksinya dan lokasi
         $catalogs = Catalog::with(['collections.location'])->findOrFail($id);
-
-        // Mengambil data MARC untuk katalog tersebut
         $marcData = MARC::where('Catalogid', $id)->orderBy('Tag', 'asc')->get();
 
-        // Query untuk mendapatkan buku terkait berdasarkan pengarang yang sama
         $relatedBooks = Catalog::where('Author', $catalogs->Author)
-                                ->where('ID', '!=', $catalogs->ID) // Menghindari buku yang sama
-                                ->limit(5) // Membatasi jumlah buku terkait
+                                ->where('ID', '!=', $catalogs->ID)
+                                ->limit(5)
                                 ->get();
 
         return view('books.show', compact('catalogs', 'relatedBooks', 'marcData'));
     }
 }
-
-
-
-
-
-
-
-
-
-
