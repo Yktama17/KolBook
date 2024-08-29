@@ -54,7 +54,7 @@
     <div class="card-container">
         @foreach($books as $book)
         <div class="book-card elevation-2">
-            <img src="https://via.placeholder.com/150" class="card-img-top" alt="{{ $book->Title }}">
+            <img src="https://plus.unsplash.com/premium_photo-1669652639337-c513cc42ead6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="{{ $book->Title }}">
             <div class="card-body">
                 <h5 class="card-title">{{ $book->Title }}</h5>
                 <p class="card-text publisher">{{ $book->Publisher }}</p>
@@ -70,6 +70,33 @@
         {{ $books->appends(request()->input())->links('pagination::bootstrap-5') }}
     </div>
 
+    <script>
+        document.getElementById('add-filter').addEventListener('click', function() {
+         let filterContainer = document.getElementById('filter-container');
+         let filterGroup = `
+             <div class="form-group filter-group">
+                 <select name="filter[]" class="form-control mr-sm-2">
+                     <option value="" selected>Select Filter</option>
+                     <option value="Title">Title</option>
+                     <option value="Publisher">Publisher</option>
+                     <option value="PublishYear">Year</option>
+                     <option value="BIBID">BIBID</option>
+                 </select>
+                 <input type="text" name="filterValue[]" class="form-control mr-sm-2" placeholder="Enter value">
+                 <button type="button" class="btn btn-danger btn-sm remove-filter">Remove</button>
+             </div>
+         `;
+         filterContainer.insertAdjacentHTML('beforeend', filterGroup);
+     });
+     
+     document.getElementById('filter-container').addEventListener('click', function(event) {
+         if (event.target.classList.contains('remove-filter')) {
+             event.target.parentElement.remove();
+         }
+     });
+     
+     </script>    
+
 @endsection
 
 
@@ -78,7 +105,7 @@
     .filter-card {
         border: 1px solid #ddd;
         border-radius: 14px;
-        box-shadow: 0 4px 8px rgba(36, 196, 63, 0.2);
+        box-shadow: 0 4px 8px rgba(175, 182, 112, 0.2);
     }
 
     .filter-card .card-header {
@@ -118,7 +145,7 @@
         justify-content: space-between;
         border-radius: 14px;
         overflow: hidden;
-        box-shadow: 0 4px 8px rgba(13, 177, 40, 0.2);
+        box-shadow: 0 4px 8px rgba(98, 100, 67, 0.2);
         border: 1px solid #ddd;
     }
 
@@ -173,29 +200,4 @@
 </style>
 
 <!-- JavaScript untuk menambah dan menghapus filter -->
-<script>
-   document.getElementById('add-filter').addEventListener('click', function() {
-    let filterContainer = document.getElementById('filter-container');
-    let filterGroup = `
-        <div class="form-group filter-group">
-            <select name="filter[]" class="form-control mr-sm-2">
-                <option value="" selected>Select Filter</option>
-                <option value="Title">Title</option>
-                <option value="Publisher">Publisher</option>
-                <option value="PublishYear">Year</option>
-                <option value="BIBID">BIBID</option>
-            </select>
-            <input type="text" name="filterValue[]" class="form-control mr-sm-2" placeholder="Enter value">
-            <button type="button" class="btn btn-danger btn-sm remove-filter">Remove</button>
-        </div>
-    `;
-    filterContainer.insertAdjacentHTML('beforeend', filterGroup);
-});
 
-document.getElementById('filter-container').addEventListener('click', function(event) {
-    if (event.target.classList.contains('remove-filter')) {
-        event.target.parentElement.remove();
-    }
-});
-
-</script>

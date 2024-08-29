@@ -33,7 +33,7 @@ class BookController extends Controller
             }
         }
 
-        $books = $books->paginate(14);
+        $books = $books->paginate(16);
 
         return view('books.index', compact('books', 'filters', 'filterValues'));
     }

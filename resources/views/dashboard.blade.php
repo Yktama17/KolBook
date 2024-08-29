@@ -12,7 +12,7 @@
                 <div class="card-header">Judul</div>
                 <div class="card-body">{{ $totalCatalogs }}</div>
                 <div class="card-footer text-center">
-                    <a href="#" class="text-white">Detail <i class="fas fa-sync-alt"></i></a>
+                    <a href="{{ route('books.index') }}" class="text-black">Detail <i class="fas fa-sync-alt"></i></a>
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
                 <div class="card-header">Konten Digital</div>
                 <div class="card-body">0</div> <!-- Anda bisa mengubah ini jika ada data dinamis untuk konten digital -->
                 <div class="card-footer text-center">
-                    <a href="#" class="text-white">Detail <i class="fas fa-sync-alt"></i></a>
+                    <a href="#" class="text-black">Detail <i class="fas fa-sync-alt"></i></a>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
                 <div class="card-header">Eksemplar</div>
                 <div class="card-body">{{ $totalCollections }}</div>
                 <div class="card-footer text-center">
-                    <a href="#" class="text-white">Detail <i class="fas fa-sync-alt"></i></a>
+                    <a href="#" class="text-black">Detail <i class="fas fa-sync-alt"></i></a>
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
                 <div class="card-header">Anggota</div>
                 <div class="card-body">0</div> <!-- Anda bisa mengubah ini jika ada data dinamis untuk anggota -->
                 <div class="card-footer text-center">
-                    <a href="#" class="text-white">Detail <i class="fas fa-sync-alt"></i></a>
+                    <a href="#" class="text-black">Detail <i class="fas fa-sync-alt"></i></a>
                 </div>
             </div>
         </div>
