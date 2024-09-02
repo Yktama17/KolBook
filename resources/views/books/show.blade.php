@@ -16,7 +16,7 @@
                 <li class="list-group-item"><strong>Penerbit:</strong> {{ $catalogs->Publisher }}</li>
                 <li class="list-group-item"><strong>BIBID:</strong> {{ $catalogs->BIBID }}</li>
                 <li class="list-group-item"><strong>Tahun Publikasi:</strong> {{ $catalogs->PublishYear }}</li>
-                <li class="list-group-item"><strong>Di Publikasi Oleh:</strong> {{ $catalogs->Publikasi }}</li>
+                <li class="list-group-item"><strong>Di Publikasi Di:</strong> {{ $catalogs->Publikasi }}</li>
             </ul>
 
             <h4 class="mt-4">Informasi Koleksi</h4>

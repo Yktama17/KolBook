@@ -105,7 +105,7 @@
     .filter-card {
         border: 1px solid #ddd;
         border-radius: 14px;
-        box-shadow: 0 4px 8px rgba(175, 182, 112, 0.2);
+        box-shadow: 0 4px 8px rgba(54, 122, 179, 0.2);
     }
 
     .filter-card .card-header {
@@ -145,7 +145,7 @@
         justify-content: space-between;
         border-radius: 14px;
         overflow: hidden;
-        box-shadow: 0 4px 8px rgba(98, 100, 67, 0.2);
+        box-shadow: 0 4px 8px rgba(54, 122, 179, 0.2);
         border: 1px solid #ddd;
     }
 
