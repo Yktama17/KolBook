@@ -54,12 +54,12 @@
     <div class="card-container">
         @foreach($books as $book)
         <div class="book-card elevation-2">
-            <img src="https://plus.unsplash.com/premium_photo-1669652639337-c513cc42ead6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="{{ $book->Title }}">
+            <img src="https://jasatirta1.co.id/wp-content/uploads/2022/07/LOGO_PJT_BESAR.png" class="card-img-top" alt="{{ $book->Title }}">
             <div class="card-body">
                 <h5 class="card-title">{{ $book->Title }}</h5>
                 <p class="card-text publisher">{{ $book->Publisher }}</p>
                 <p class="card-text collections-count">Copies: {{ $book->collections_count }}</p>
-                <a href="{{ route('books.show', ['id' => $book->ID, 'filter' => request('filter'), 'filterValue' => request('filterValue')]) }}" class="btn btn-outline-info">Detail</a>
+                <a href="{{ route('books.show', ['id' => $book->ID, 'filter' => request('filter'), 'filterValue' => request('filterValue'), 'page' => request('page')]) }}" class="btn btn-outline-info">Detail</a>
             </div>
         </div>
         @endforeach

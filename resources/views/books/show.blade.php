@@ -8,7 +8,7 @@
     
     <div class="row">
         <div class="col-md-4">
-            <img src="https://via.placeholder.com/150" class="card-img-top" alt="{{ $catalogs->Title }}">
+            <img src="https://jasatirta1.co.id/wp-content/uploads/2022/07/LOGO_PJT_BESAR.png" class="card-img-top" alt="{{ $catalogs->Title }}">
         </div>
         <div class="col-md-8">
             <h3>Detail Buku</h3>
@@ -107,7 +107,8 @@
                 </div>
             </div>
 
-            <a href="{{ route('books.index', ['filter' => request('filter'), 'filterValue' => request('filterValue')]) }}" class="btn btn-primary mt-4">Kembali ke Daftar Buku</a>
+            <a href="{{ route('books.index', ['filter' => request('filter'), 'filterValue' => request('filterValue'), 'page' => request('page')]) }}" class="btn btn-primary mt-4">Kembali ke Daftar Buku</a>
+
         </div>
     </div>
 
@@ -116,7 +117,7 @@
     <div class="card-container">
         @foreach($relatedBooks as $relatedBook)
         <div class="book-card elevation-2">
-            <img src="https://via.placeholder.com/150" class="card-img-top" alt="{{ $relatedBook->Title }}">
+            <img src="https://jasatirta1.co.id/wp-content/uploads/2022/07/LOGO_PJT_BESAR.png" class="card-img-top" alt="{{ $relatedBook->Title }}">
             <div class="card-body">
                 <h5 class="card-title">{{ $relatedBook->Title }}</h5>
                 <p class="card-text publisher">{{ $relatedBook->Publisher }}</p>
@@ -143,7 +144,7 @@
         justify-content: space-between;
         border-radius: 14px;
         overflow: hidden;
-        box-shadow: 0 4px 8px rgba(13, 177, 40, 0.2);
+        box-shadow: 0 4px 8px rgba(27, 197, 183, 0.2);
         border: 1px solid #ddd;
     }
 
@@ -158,6 +159,6 @@
     }
 
     .book-card .publisher {
-        color: #555;
+        color: #31b3b3;
     }
 </style>

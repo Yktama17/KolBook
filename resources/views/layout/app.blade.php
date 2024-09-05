@@ -9,8 +9,11 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Perpustakaan Perum Jasa Tirta I</a>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">
+            <img src="https://jasatirta1.co.id/wp-content/uploads/2022/07/LOGO_PJT_BESAR.png" alt="Logo PJT I" style="height: 30px; margin-right: 10px;">
+            Perpustakaan Perum Jasa Tirta I
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -20,10 +23,10 @@
                     <a class="nav-link" href="{{ route('dashboard') }}"><i class="fas fa-home"></i> Beranda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('books.index') }}"><i class="fas fa-book-open"></i> Katalog</a>
+                    <a class="nav-link" href="#"><i class="fas fa-book-open"></i> Info</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-folder-open"></i> Koleksi</a>
+                    <a class="nav-link" href="#"><i class="fas fa-folder-open"></i> Panduan</a>
                 </li>
             </ul>
         </div>
@@ -31,10 +34,10 @@
 
     <!-- Page Content -->
     <div class="container-fluid mt-4">
-        <nav class="breadcrumb">
+        {{-- <nav class="breadcrumb">
             <span class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></span>
             <span class="breadcrumb-item active">PerpusPJTI</span>
-        </nav>
+        </nav> --}}
 
         @yield('content')
     </div>
@@ -46,12 +49,28 @@
 </html>
 
 <style>
-    /* Styling untuk navbar */
-    .navbar-dark .navbar-nav .nav-link {
-        color: #cfd8dc;
+    /* Mengganti warna background navbar */
+    .navbar {
+        background: linear-gradient(135deg, #56CCF2, #2F80ED); /* Ganti dengan warna yang Anda inginkan */
     }
 
+    /* Mengganti warna teks navbar */
+    .navbar-dark .navbar-nav .nav-link {
+        color: #ecf0f1; /* Ganti dengan warna teks yang diinginkan */
+    }
+
+    /* Mengganti warna teks navbar saat dihover */
     .navbar-dark .navbar-nav .nav-link:hover {
-        color: #ffffff;
+        color: #ffffff; /* Warna teks saat dihover */
+    }
+
+    /* Mengganti warna teks brand (judul navbar) */
+    .navbar-dark .navbar-brand {
+        color: #ffffff; /* Ganti dengan warna teks yang diinginkan */
+    }
+
+    /* Mengganti warna ikon hamburger (untuk versi mobile) */
+    .navbar-dark .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/ %3E%3C/svg%3E");
     }
 </style>
