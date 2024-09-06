@@ -44,13 +44,23 @@
                     <h3>Peminjaman</h3>
                 </a>
             </div>
+
+            <div class="catalog-card">
+                <a href="#">
+                    <video class="catalog-icon" autoplay loop muted playsinline>
+                        <source src="/Videos/ebook.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <h3>Layanan Koleksi Digital</h3>
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- New Section to Display Catalog and Collection Counts Without Card -->
     <section class="collection-data">
         <div class="container">
-            <h2>Data Koleksi Perpustakaan</h2>
+            <h2>Koleksi Perpustakaan</h2>
             <div class="data-display">
                 <div>
                     <h3>{{ $totalCatalogs }}</h3>
@@ -75,9 +85,9 @@
                     <p>Telp. (0341) 551971</p>
                     <p>Fax (0341) 553015</p>
                     <p>www.jasatirta1.co.id</p>
-                </div>
+                </div> 
                 
-                <div class="col-md-4">
+                {{-- <div class="col-md-4">
                     <h5>Lokasi Perpustakaan</h5>
                     <p>Perpustakaan Pusat</p>
                 </div>
@@ -96,11 +106,11 @@
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
 
-                </div>
+                </div> --}}
             </div>
             <hr>
             <div class="footer-bottom text-center">
-                <p>&copy; Yktama</p>
+                <p>&copy;</p>
             </div>
         </div>
     </footer>

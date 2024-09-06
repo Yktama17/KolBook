@@ -121,6 +121,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{ $relatedBook->Title }}</h5>
                 <p class="card-text publisher">{{ $relatedBook->Publisher }}</p>
+                <a href="{{ route('books.show', $relatedBook->ID) }}" class="btn btn-primary mt-2">Detail</a> <!-- Tombol Detail -->
             </div>
         </div>
         @endforeach
@@ -136,6 +137,28 @@
         gap: 15px;
         justify-content: center;
         margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+        .card-container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 576px) {
+        .card-container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .book-card .card-text {
+        font-size: 14px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 5px;
     }
 
     .book-card {
