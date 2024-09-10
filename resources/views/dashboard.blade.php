@@ -21,41 +21,44 @@
     </section>
 
     <!-- Section Card Navigasi -->
-    <section class="catalog-navigation">
-        <div class="container grid-container">
-            <!-- Card 1: Katalog -->
+   <!-- Section Card Navigasi -->
+<section class="catalog-navigation">
+    <div class="container grid-container">
+        <!-- Card 1: Katalog -->
+        <a href="{{ route('books.index') }}">
             <div class="catalog-card">
-                <a href="{{ route('books.index') }}">
-                    <video class="catalog-icon" autoplay loop muted playsinline>
-                        <source src="/Videos/open-book.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <h3>Katalog</h3>
-                </a>
+                <video class="catalog-icon" autoplay loop muted playsinline>
+                    <source src="/Videos/open-book.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <h3>Katalog</h3>
             </div>
+        </a>
 
-            <!-- Card 2: Peminjaman -->
+        <!-- Card 2: Peminjaman -->
+        <a href="#">
             <div class="catalog-card">
-                <a href="#">
-                    <video class="catalog-icon" autoplay loop muted playsinline>
-                        <source src="/Videos/reading.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <h3>Peminjaman</h3>
-                </a>
+                <video class="catalog-icon" autoplay loop muted playsinline>
+                    <source src="/Videos/reading.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <h3>Peminjaman</h3>
             </div>
+        </a>
 
+        <!-- Card 3: Layanan Koleksi Digital -->
+        <a href="{{ route('digital-collection.index') }}">
             <div class="catalog-card">
-                <a href="#">
-                    <video class="catalog-icon" autoplay loop muted playsinline>
-                        <source src="/Videos/ebook.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <h3>Layanan Koleksi Digital</h3>
-                </a>
+                <video class="catalog-icon" autoplay loop muted playsinline>
+                    <source src="/Videos/ebook.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <h3>Layanan Koleksi Digital</h3>
             </div>
-        </div>
-    </section>
+        </a>
+    </div>
+</section>
+
 
     <!-- New Section to Display Catalog and Collection Counts Without Card -->
     <section class="collection-data">
@@ -85,28 +88,7 @@
                     <p>Telp. (0341) 551971</p>
                     <p>Fax (0341) 553015</p>
                     <p>www.jasatirta1.co.id</p>
-                </div> 
-                
-                {{-- <div class="col-md-4">
-                    <h5>Lokasi Perpustakaan</h5>
-                    <p>Perpustakaan Pusat</p>
                 </div>
-
-                <!-- Embedded Google Maps -->
-                <div class="col-md-4">
-                    <h5>Lokasi Perpustakaan</h5>
-                    <!-- Google Maps Iframe -->
-                    <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.319567421404!2d112.6156321757854!3d-7.965888779396172!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e788281b93990df%3A0xd788d8a4e1d290d8!2sPerum%20Jasa%20Tirta%20I!5e0!3m2!1sid!2sid!4v1725506293950!5m2!1sid!2sid&q=-7.965888779396172,112.6156321757854" 
-                    width="500" 
-                    height="250" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-
-                </div> --}}
             </div>
             <hr>
             <div class="footer-bottom text-center">
@@ -134,12 +116,12 @@
     }
 
     .hero {
-        background-image: url('https://via.placeholder.com/1200x400');
+        background-image: url('https://plus.unsplash.com/premium_photo-1675369009502-4125a781576a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
         background-size: cover;
         background-position: center;
         color: #fff;
         text-align: center;
-        padding: 100px 30px;
+        padding: 100px 50px;
     }
 
     .hero-content h1 {
@@ -190,6 +172,7 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s, box-shadow 0.3s;
         overflow: hidden;
+        cursor: pointer; /* Mengubah kursor menjadi pointer */
     }
 
     .catalog-card::before {
@@ -267,17 +250,17 @@
 
     /* Full-width footer section */
     .footer-section {
-        background: linear-gradient(135deg, #56CCF2, #2F80ED); /* Blue to turquoise gradient */
+        background: linear-gradient(135deg, #56CCF2, #2F80ED); 
         color: white;
         padding: 30px 0;
-        width: 100%; /* Full width of the screen */
-        margin: 0; /* Remove margin to prevent space on sides */
+        width: 100%; 
+        margin: 0; 
     }
 
     .footer-content {
-        max-width: none; /* Remove default max width for full width content */
-        padding: 0 20px; /* Add some padding inside the content to keep it readable */
-        width: 100%; /* Ensure it fills the entire width */
+        max-width: none;  
+        padding: 0 20px; 
+        width: 100%; 
     }
 
     .footer-section h5 {
