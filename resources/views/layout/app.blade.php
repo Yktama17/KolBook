@@ -42,35 +42,37 @@
 
         @yield('content')
     </div>
-    <!-- /#page-content-wrapper -->
+    <!-- page-content-->
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/backNavigation.js') }}"></script>
+    @yield('scripts')
 </body>
 </html>
 
 <style>
-    /* Mengganti warna background navbar */
+
     .navbar {
-        background: linear-gradient(135deg, #56CCF2, #2F80ED); /* Ganti dengan warna yang Anda inginkan */
+        background: linear-gradient(135deg, #56CCF2, #2F80ED); 
     }
 
-    /* Mengganti warna teks navbar */
+   
     .navbar-dark .navbar-nav .nav-link {
-        color: #ecf0f1; /* Ganti dengan warna teks yang diinginkan */
+        color: #ecf0f1; 
     }
 
-    /* Mengganti warna teks navbar saat dihover */
+   
     .navbar-dark .navbar-nav .nav-link:hover {
-        color: #ffffff; /* Warna teks saat dihover */
+        color: #ffffff; 
     }
 
-    /* Mengganti warna teks brand (judul navbar) */
+   
     .navbar-dark .navbar-brand {
-        color: #ffffff; /* Ganti dengan warna teks yang diinginkan */
+        color: #ffffff; 
     }
 
-    /* Mengganti warna ikon hamburger (untuk versi mobile) */
+   
     .navbar-dark .navbar-toggler-icon {
         background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/ %3E%3C/svg%3E");
     }

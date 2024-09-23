@@ -4,77 +4,146 @@
 
 @section('content')
 <main class="digital-collection-page">
-    <div class="container">
-        <h1>Layanan Koleksi Digital</h1>
-        <form action="{{ route('digital-collection.search') }}" method="GET" class="search-form">
-            <div class="search-bar">
-                <input type="text" name="keyword" placeholder="Kata Kunci" class="search-input">
-                <select name="format" class="search-select">
+    <div class="container py-4">
+        <h1 class="text-center mb-4">Layanan Koleksi Digital</h1>
+        <form action="{{ route('digital-collection.index') }}" method="GET" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="Kata Kunci" class="form-control">
+                <select name="format" class="form-select" style="max-width: 120px;">
                     <option value="">Judul</option>
-                    <option value="pdf">Pengarang</option>
-                    <option value="epub">Penerbit</option>
-                    <!-- Add more options as needed -->
+                    <option value="author">Pengarang</option>
+                    <option value="publisher">Penerbit</option>
+                    <option value="subject">Subyek</option>
+                    <option value="call_number">Nomor Panggil</option>
+                    <option value="isbn">ISBN</option>
+                    <option value="ismn">ISMN</option>
                 </select>
-                <select name="format" class="search-select">
-                    <option value="">Semua Format File</option>
-                    <option value="pdf">PDF</option>
-                    <option value="epub">ePub</option>
-                    <!-- Add more options as needed -->
-                </select>
-                <button type="submit" class="search-button">Cari</button>
+                <button type="submit" class="btn btn-primary">Cari</button>
             </div>
-            {{-- <p><a href="#">Pencarian Lanjut</a> • <a href="#">Riwayat Pencarian</a> • <a href="#">Bantuan</a></p> --}}
         </form>
+
+        <div class="collection-results">
+            @if(isset($catalogs) && $catalogs->isNotEmpty())
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    @foreach($catalogs as $catalog)
+                        <div class="col mb-4">
+                            <div class="card h-100">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title flex-grow-1">{{ Str::limit($catalog->Title, 50) }}</h5>
+                                    <a href="{{ route('books.show', ['id' => $catalog->ID, 'filter' => request('filter'), 'filterValue' => request('filterValue'), 'page' => request('page')]) }}" class="btn btn-outline-info">Baca</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <div class="d-flex justify-content-center mt-4">
+                    {{ $catalogs->links('pagination::bootstrap-4') }}
+                </div>
+            @elseif($catalogs && $catalogs->isEmpty())
+                <p class="text-center text-muted">Tidak ada hasil yang ditemukan.</p>
+            @endif
+        </div>
     </div>
 </main>
-@endsection
+
+<script>
+    // Simpan URL saat ini di sessionStorage sebagai halaman sebelumnya
+    sessionStorage.setItem('previousPage', window.location.href);
+</script>
 
 <style>
+    /* CSS kustom Anda di sini */
     .digital-collection-page {
         background-color: #f0f8ff;
-        padding: 20px;
-        text-align: center;
+        min-height: 100vh;
+        padding: 2rem 0;
     }
 
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .search-form {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-    }
-
-    .search-bar {
-        display: flex;
-        gap: 10px;
-    }
-
-    .search-input {
-        padding: 10px;
-        border: 1px solid #ddd;
+    .input-group {
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         border-radius: 5px;
-        width: 200px;
+        overflow: hidden;
     }
 
-    .search-select {
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-    }
-
-    .search-button {
-        padding: 10px 20px;
-      background: linear-gradient(135deg, #56CCF2, #2F80ED);
-        color: #fff;
+    .input-group .form-control,
+    .input-group .form-select,
+    .input-group .btn {
         border: none;
-        border-radius: 5px;
-        cursor: pointer;
+        border-radius: 0;
     }
 
-    .search-button:hover {
-        background-color: #218838;
+    .input-group .form-control:focus,
+    .input-group .form-select:focus {
+        box-shadow: none;
+        z-index: 3;
+    }
+
+    .btn-primary, .btn-success {
+        background: linear-gradient(135deg, #56CCF2, #2F80ED);
+        border: none;
+        transition: opacity 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-primary:hover, .btn-success:hover {
+        opacity: 0.9;
+        box-shadow: 0 2px 10px rgba(47, 128, 237, 0.3);
+    }
+
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+        margin-bottom: 1.5rem;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(86, 204, 242, 0.3);
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+    }
+
+    .card-title {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        flex-grow: 1;
+    }
+
+    .pagination {
+        justify-content: center;
+    }
+
+    .page-item.active .page-link {
+        background-color: #2F80ED;
+        border-color: #2F80ED;
+    }
+
+    .page-link {
+        color: #2F80ED;
+    }
+
+    .page-link:hover {
+        color: #1a5ba3;
+    }
+
+    .row-cols-1, .row-cols-md-2, .row-cols-lg-3 {
+        margin-top: -1rem;
+        margin-bottom: -1rem;
+    }
+
+    .row-cols-1 > *, .row-cols-md-2 > *, .row-cols-lg-3 > * {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .card-title {
+            font-size: 0.9rem;
+        }
     }
 </style>
+@endsection

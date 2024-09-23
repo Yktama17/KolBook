@@ -17,5 +17,6 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 Route::get('/books/{id}', [BookController::class, 'show'])->name('books.show');
 
+// Route untuk digital collection
 Route::get('/digital-collection', [DigitalCollectionController::class, 'index'])->name('digital-collection.index');
 Route::get('/digital-collection/search', [DigitalCollectionController::class, 'search'])->name('digital-collection.search');

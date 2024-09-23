@@ -1,22 +1,22 @@
 <!-- resources/views/books/show.blade.php -->
 @extends('layout.app')
 
-@section('title', $catalogs->Title)
+@section('title', $catalog->Title)
 
 @section('content')
-    <h1 class="my-4">{{ $catalogs->Title }}</h1>
+    <h1 class="my-4">{{ $catalog->Title }}</h1>
     
     <div class="row">
         <div class="col-md-4">
-            <img src="https://jasatirta1.co.id/wp-content/uploads/2022/07/LOGO_PJT_BESAR.png" class="card-img-top" alt="{{ $catalogs->Title }}">
+            <img src="https://jasatirta1.co.id/wp-content/uploads/2022/07/LOGO_PJT_BESAR.png" class="card-img-top" alt="{{ $catalog->Title }}">
         </div>
         <div class="col-md-8">
             <h3>Detail Buku</h3>
             <ul class="list-group">
-                <li class="list-group-item"><strong>Penerbit:</strong> {{ $catalogs->Publisher }}</li>
-                <li class="list-group-item"><strong>BIBID:</strong> {{ $catalogs->BIBID }}</li>
-                <li class="list-group-item"><strong>Tahun Publikasi:</strong> {{ $catalogs->PublishYear }}</li>
-                <li class="list-group-item"><strong>Di Publikasi Di:</strong> {{ $catalogs->Publikasi }}</li>
+                <li class="list-group-item"><strong>Penerbit:</strong> {{ $catalog->Publisher }}</li>
+                <li class="list-group-item"><strong>BIBID:</strong> {{ $catalog->BIBID }}</li>
+                <li class="list-group-item"><strong>Tahun Publikasi:</strong> {{ $catalog->PublishYear }}</li>
+                <li class="list-group-item"><strong>Di Publikasi Di:</strong> {{ $catalog->Publikasi }}</li>
             </ul>
 
             <h4 class="mt-4">Informasi Koleksi</h4>
@@ -52,7 +52,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($catalogs->collections as $collection)
+                            @foreach($catalog->collections as $collection)
                             <tr>
                                 <td>{{ $collection->NomorBarcode ?? 'Tidak tersedia' }}</td>
                                 <td>{{ $collection->CallNumber ?? 'Tidak tersedia' }}</td>
@@ -106,9 +106,7 @@
                     </table>
                 </div>
             </div>
-
-            <a href="{{ route('books.index', ['filter' => request('filter'), 'filterValue' => request('filterValue'), 'page' => request('page')]) }}" class="btn btn-primary mt-4">Kembali ke Daftar Buku</a>
-
+            <button id="back-button" class="btn btn-outline-secondary">Kembali</button>
         </div>
     </div>
 
@@ -121,16 +119,30 @@
             <div class="card-body">
                 <h5 class="card-title">{{ $relatedBook->Title }}</h5>
                 <p class="card-text publisher">{{ $relatedBook->Publisher }}</p>
-                <a href="{{ route('books.show', $relatedBook->ID) }}" class="btn btn-primary mt-2">Detail</a> <!-- Tombol Detail -->
+                {{-- <a href="{{ route('books.show', $relatedBook->ID) }}" class="btn btn-primary mt-2">Detail</a> <!-- Tombol Detail --> --}}
             </div>
         </div>
         @endforeach
     </div>
+
+    <script>
+        document.getElementById('back-button').addEventListener('click', function() {
+          
+            const previousPage = sessionStorage.getItem('previousPage');
+            if (previousPage) {
+                window.location.href = previousPage;
+            } else {
+              
+                window.location.href = "{{ route('books.index') }}";
+            }
+        });
+    </script>
+
 @endsection
 
-<!-- Include the same CSS styles you were using -->
+
 <style>
-    /* CSS yang sama seperti sebelumnya */
+   
     .card-container {
         display: grid;
         grid-template-columns: repeat(5, 1fr);

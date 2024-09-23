@@ -3,28 +3,53 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Catalog;
+use App\Models\MARC;
 
 class DigitalCollectionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Display the digital collection view
-        return view('DigitalCollection.index');
+        $keyword = $request->input('keyword');
+        $format = $request->input('format');
+        $catalogs = null;
+
+        if ($keyword) {
+            $query = Catalog::query();
+
+            switch ($format) {
+                case 'author':
+                    $query->where('Author', 'LIKE', "%{$keyword}%");
+                    break;
+                case 'publisher':
+                    $query->where('Publisher', 'LIKE', "%{$keyword}%");
+                    break;
+                case 'isbn':
+                    $query->where('ISBN', 'LIKE', "%{$keyword}%");
+                    break;
+                case 'ismn':
+                    $query->where('ISMN', 'LIKE', "%{$keyword}%");
+                    break;
+                default:
+                    $query->where('Title', 'LIKE', "%{$keyword}%");
+            }
+
+            $catalogs = $query->paginate(10)->appends($request->except('page'));
+        }
+
+        return view('DigitalCollection.index', compact('catalogs'));
     }
 
-    public function search(Request $request)
+    public function show($id)
     {
-        // Handle the search functionality
-        $keyword = $request->input('keyword');
-        $title = $request->input('title');
-        $format = $request->input('format');
+        $catalog = Catalog::with(['collections.location'])->findOrFail($id);
+        $marcData = MARC::where('Catalogid', $id)->orderBy('Tag', 'asc')->get();
 
-        // Perform search logic here, e.g., query the database for results
-        // Example: $results = Catalog::where('title', 'like', "%$title%")->get();
+        $relatedBooks = Catalog::where('Author', $catalog->Author)
+                                ->where('id', '!=', $catalog->id)
+                                ->limit(5)
+                                ->get();
 
-        // For demonstration purposes, returning the search view with dummy results
-        $results = []; // Replace with actual search results
-
-        return view('DigitalCollection.index', compact('result'));
+        return view('books.show', compact('catalog', 'relatedBooks', 'marcData'));
     }
 }

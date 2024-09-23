@@ -20,8 +20,7 @@
         </div>
     </section>
 
-    <!-- Section Card Navigasi -->
-   <!-- Section Card Navigasi -->
+  
 <section class="catalog-navigation">
     <div class="container grid-container">
         <!-- Card 1: Katalog -->
@@ -60,7 +59,7 @@
 </section>
 
 
-    <!-- New Section to Display Catalog and Collection Counts Without Card -->
+ 
     <section class="collection-data">
         <div class="container">
             <h2>Koleksi Perpustakaan</h2>
@@ -172,7 +171,7 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s, box-shadow 0.3s;
         overflow: hidden;
-        cursor: pointer; /* Mengubah kursor menjadi pointer */
+        cursor: pointer;
     }
 
     .catalog-card::before {
@@ -215,7 +214,7 @@
         z-index: 2;
     }
 
-    /* Style for the Collection Data Section Without Cards */
+    
     .collection-data {
         background-color: #ffffff;
         padding: 50px 0;
@@ -248,7 +247,7 @@
         color: #666;
     }
 
-    /* Full-width footer section */
+
     .footer-section {
         background: linear-gradient(135deg, #56CCF2, #2F80ED); 
         color: white;
