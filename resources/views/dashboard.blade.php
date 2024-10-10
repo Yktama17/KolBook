@@ -46,7 +46,7 @@
         </a>
 
         <!-- Card 3: Layanan Koleksi Digital -->
-        <a href="{{ route('digital-collection.index') }}">
+        <a href="https://app2.jasatirta1.co.id/production/jtlearning/public/" target="_blank" rel="noopener noreferrer">
             <div class="catalog-card">
                 <video class="catalog-icon" autoplay loop muted playsinline>
                     <source src="/Videos/ebook.mp4" type="video/mp4">
@@ -54,7 +54,7 @@
                 </video>
                 <h3>Layanan Koleksi Digital</h3>
             </div>
-        </a>
+        </a>              
     </div>
 </section>
 

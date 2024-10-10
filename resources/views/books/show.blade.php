@@ -17,25 +17,22 @@
                 <li class="list-group-item"><strong>BIBID:</strong> {{ $catalog->BIBID }}</li>
                 <li class="list-group-item"><strong>Tahun Publikasi:</strong> {{ $catalog->PublishYear }}</li>
                 <li class="list-group-item"><strong>Di Publikasi Di:</strong> {{ $catalog->Publikasi }}</li>
+                <li class="list-group-item"><strong>Bahasa:</strong> 
+                    @if($catalog->Languages == 'ind')
+                        Indonesia
+                    @elseif($catalog->Languages == 'eng')
+                        Inggris
+                    @else
+                        {{ $catalog->Languages }}
+                    @endif
+                </li>
+                
             </ul>
 
             <h4 class="mt-4">Informasi Koleksi</h4>
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <button class="nav-link active" id="nav-eksemplar-tab" data-toggle="tab" data-target="#nav-eksemplar" type="button" role="tab" aria-controls="nav-eksemplar" aria-selected="true">Eksemplar</button>
-                    <button class="nav-link" id="nav-konten-digital-tab" data-toggle="tab" data-target="#nav-konten-digital" type="button" role="tab" aria-controls="nav-konten-digital" aria-selected="false">Konten Digital</button>
-                    <button class="nav-link" id="nav-marc-tab" data-toggle="tab" data-target="#nav-marc" type="button" role="tab" aria-controls="nav-marc" aria-selected="false">MARC</button>
-                    <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="nav-unduh-catalog-tab" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Unduh Katalog</a>
-                        <div class="dropdown-menu" aria-labelledby="nav-unduh-catalog-tab">
-                            <a class="dropdown-item" href="#">MARC Unicode/UTF-8</a>
-                            <a class="dropdown-item" href="#">Format MARC XML</a>
-                            <a class="dropdown-item" href="#">Format MODS</a>
-                            <a class="dropdown-item" href="#">Format Dublin Core (RDF)</a>
-                            <a class="dropdown-item" href="#">Format Dublin Core (OAI)</a>
-                            <a class="dropdown-item" href="#">Format Dublin Core (SRW)</a>
-                        </div>
-                    </div>
                 </div>
             </nav>
 
@@ -79,32 +76,7 @@
                     </table>
                 </div>
 
-                <div class="tab-pane fade" id="nav-konten-digital" role="tabpanel" aria-labelledby="nav-konten-digital-tab">
-                    <p>Kosong untuk saat ini.</p>
-                </div>
-
-                <div class="tab-pane fade" id="nav-marc" role="tabpanel" aria-labelledby="nav-marc-tab">
-                    <table class="table table-bordered mt-3">
-                        <thead>
-                            <tr>
-                                <th>Tag</th>
-                                <th>Ind1</th>
-                                <th>Ind2</th>
-                                <th>Isi/Value</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($marcData as $marc)
-                            <tr>
-                                <td>{{ $marc->Tag }}</td>
-                                <td>{{ $marc->Indicator1 }}</td>
-                                <td>{{ $marc->Indicator2 }}</td>
-                                <td>{{ $marc->Value }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+              
             </div>
             <button id="back-button" class="btn btn-outline-secondary">Kembali</button>
         </div>
