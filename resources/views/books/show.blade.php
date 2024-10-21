@@ -1,4 +1,3 @@
-<!-- resources/views/books/show.blade.php -->
 @extends('layout.app')
 
 @section('title', $catalog->Title)

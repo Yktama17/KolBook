@@ -1,4 +1,3 @@
-<!-- resources/views/partials/sidebar.blade.php -->
 <div id="sidebar-wrapper">
     <div class="sidebar-heading">Perpustakaan Perum Jasa Tirta I</div>
     <div class="list-group list-group-flush">

@@ -80,7 +80,6 @@
     <footer class="footer-section mt-4">
         <div class="container">
             <div class="row">
-                <!-- Contact Information -->
                 <div class="col-md-4">
                     <h5>Kontak Kami</h5>
                     <p>Jl. Surabaya 2A, Malang 65145</p>

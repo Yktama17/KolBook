@@ -1,4 +1,3 @@
-<!-- resources/views/books/index.blade.php -->
 @extends('layout.app')
 
 @section('title', 'Koleksi Buku')
@@ -95,7 +94,6 @@
          }
      });
 
-       // Simpan URL saat ini di sessionStorage sebagai halaman sebelumnya
        sessionStorage.setItem('previousPage', window.location.href);
      
      </script>    
